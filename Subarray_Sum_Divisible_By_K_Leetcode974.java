@@ -16,3 +16,20 @@ class Solution {
         return c;
     }
 }
+
+
+// AAPPROACH 2 - USING HASHMAP ( O(N) ) 
+
+class Solution {
+    public int subarraysDivByK(int[] nums, int k){
+        int ps=0,ans=0;
+        Map<Integer,Integer>mp=new HashMap<>();
+        mp.put(0,1);
+        for(int i=0;i<nums.length;i++){
+            ps=(ps+nums[i]%k+k)%k;
+            ans+=mp.getOrDefault(ps,0);
+            mp.put(ps,mp.getOrDefault(ps,0)+1);
+        }
+        return ans;
+    }
+}
