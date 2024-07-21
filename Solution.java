@@ -11,6 +11,6 @@ public class Solution
         }
         return mini;
     }
-} {
+} 
     
-}
+
