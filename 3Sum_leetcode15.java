@@ -24,3 +24,26 @@ class Solution {
 }
 
 // THE ABOVE APPROACH GIVES TIME LIMIT EXCEEDED  FOR LARGE TEST CASES
+
+
+// APPROACH 2 - BETTER APPROACH - TIME COMPLEXITY - O(N * N)
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>>se=new HashSet<>();
+        for(int i=0;i<nums.length-1;i++){
+            Set<Integer>hs=new HashSet<>();
+            for(int j=i+1;j<nums.length;j++){
+                int comp=0-(nums[i]+nums[j]);
+                if(hs.contains(comp)){
+                    List<Integer>t=Arrays.asList(nums[i],nums[j],comp);
+                    t.sort(null);
+                    se.add(t);
+                }
+                hs.add(nums[j]);
+            }
+        }
+        List<List<Integer>>ans=new ArrayList<>(se);
+        return ans;
+    }
+}
