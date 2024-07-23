@@ -1,0 +1,29 @@
+// Approach 1 -USING HASHMAP AND COMPARATOR IN JAVA 
+
+class Solution {
+    public int[] frequencySort(int[] nums) {
+        Map<Integer,Integer>mp=new HashMap<>();
+        for(int i:nums){
+            mp.put(i,mp.getOrDefault(i,0)+1);
+        }
+        Integer[] num=new Integer[nums.length];
+        for(int i=0;i<nums.length;i++){
+            num[i]=nums[i];
+        }
+        Arrays.sort(num,(a,b)->{
+        int m=mp.get(a);
+        int n=mp.get(b);
+        if(m!=n){
+            return Integer.compare(m,n);
+        }
+        else{
+            return Integer.compare(b,a);
+        }
+    });
+    int[] res=new int[nums.length];
+    for(int i=0;i<nums.length;i++){
+        res[i]=num[i];
+    }
+    return res;
+    }
+}
