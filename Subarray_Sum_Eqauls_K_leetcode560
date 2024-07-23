@@ -1,0 +1,58 @@
+
+// APPROACH 1 - TIME COMPLEXITY -O(N*N*N)
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count=0;
+        for(int i=0;i<nums.length;i++){
+            for(int j=i;j<nums.length;j++){
+                int sum=0;
+                for(int m=i;m<=j;m++){
+                    sum+=nums[m];
+                }
+                if(sum==k)
+                    count++;
+            }
+        }
+        return count;
+    }
+}
+
+//the above approach gives time limit exceeded for large test cases - TLE
+
+
+// APPROACH 2 - TIME COMPLEXITY - O(N*N)
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count=0;
+        for(int i=0;i<nums.length;i++){
+            int sum=0;
+            for(int j=i;j<nums.length;j++){
+                sum+=nums[j];
+                if(sum==k)
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+// APPROACH 3 - TIME COMPLEXITY - O(N) AND SPACE COMPLEXITY - O(N)
+// USING HASHMAP
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count=0;
+        Map<Integer,Integer>mp=new HashMap<>();
+        int sum=0;
+        mp.put(0,1);
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            if(mp.containsKey(sum-k))
+            count+=mp.get(sum-k);
+            mp.put(sum,mp.getOrDefault(sum,0)+1);
+        }
+        return count;
+    }
+}
